@@ -1,0 +1,28 @@
+<!doctype html>
+<!-- GRAND HAMMER CLIMB 60, GameBull web build (portrait). This page is the host-facing shell:
+     - the loading page (Unity IdeofuzionBridge template behaviour, playbook section 7): baked blurred key art,
+       spinner, tenant icon from /context (gameLogoUrl, then gameBannerUrl) with the 4 s / 30 s clocks;
+     - a frame filling the whole page (full width and height, safe areas excepted; no fixed size or scale: the
+       client's own #game box fits itself, 480 px wide at most, centred) that runs the game (app.html) with the same launch URL. -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#07164b">
+<title>グランハマー CLIMB 60</title>
+<link rel="icon" type="image/png" href="./gb/favicon-kyWAIMi8.png">
+  <script type="module" crossorigin src="./gb/index-BYP_D45t.js"></script>
+  <link rel="modulepreload" crossorigin href="./gb/nozoom-zSHiv0yT.js">
+  <link rel="stylesheet" crossorigin href="./gb/index-DK_s5OPO.css">
+</head>
+<body>
+<iframe id="gb-frame" title="GRAND HAMMER CLIMB 60" allow="autoplay; fullscreen; clipboard-write"></iframe>
+<div id="gb-loading">
+  <div id="unity-loading-bar">
+    <div id="unity-logo"><div id="gb-tenant-logo"></div><div id="gb-spinner"></div></div>
+    <div id="unity-progress-bar-empty"><div id="unity-progress-bar-full"></div></div>
+    <div id="unity-progress-percent">0%</div>
+  </div>
+</div>
+</body>
+</html>
