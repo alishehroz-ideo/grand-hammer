@@ -1,0 +1,9 @@
+import {translate} from './i18n.js';
+// Rasterize the Japanese 16-dot font to hard pixels, with integer zoom only.
+export class Typography{
+ constructor(canvas,makeCanvas=()=>document.createElement('canvas')){this.canvas=canvas;this.ctx=canvas.getContext('2d');this.makeCanvas=makeCanvas;this.cache=new Map();this.width=240;this.height=320;this.ratio=1;}
+ resize(width,height,logicalHeight,dpr=1){this.width=width;this.height=height;this.logicalHeight=logicalHeight;this.ratio=Math.max(1,Math.min(3,dpr));this.canvas.width=Math.round(width*this.ratio);this.canvas.height=Math.round(height*this.ratio);}
+ clear(){this.ctx.setTransform(1,0,0,1,0,0);this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);this.ctx.setTransform(this.ratio,0,0,this.ratio,0,0);this.ctx.imageSmoothingEnabled=false;}
+ raster(s,color){s=translate(s);const key=s+'|'+color;if(this.cache.has(key))return this.cache.get(key);const b=this.makeCanvas(),c=b.getContext('2d');c.font='16px "DotGothic16"';b.width=Math.ceil(c.measureText(s).width)+2;b.height=20;c.font='16px "DotGothic16"';c.textBaseline='alphabetic';c.fillStyle=color;c.fillText(s,0,16);const pixels=c.getImageData(0,0,b.width,b.height);for(let i=3;i<pixels.data.length;i+=4)pixels.data[i]=pixels.data[i]>=128?255:0;c.putImageData(pixels,0,0);this.cache.set(key,b);return b;}
+ text(s,x,y,color,size=9,align='left',background=false){const c=this.ctx,k=this.width/240,ky=this.height/this.logicalHeight,b=this.raster(s,color),scale=size*k>=30?2:1,w=b.width*scale,yy=Math.round(y*ky);if(w>this.width-8||yy-16*scale<0||yy+4*scale>this.height)return;let xx=x*k;if(align==='center')xx-=w/2;else if(align==='right')xx-=w;xx=Math.round(Math.max(4,Math.min(this.width-w-4,xx)));if(background){c.fillStyle='#000';c.fillRect(xx-2,yy-16*scale-1,w+4,20*scale+2);}c.drawImage(b,xx,yy-16*scale,w,20*scale);}
+}

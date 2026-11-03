@@ -1,0 +1,105 @@
+@font-face{font-family:DotGothic16;src:url("assets/fonts/DotGothic16-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:block}
+:root{color-scheme:dark;font-family:system-ui,sans-serif;background:#030716;color:#fff}*{box-sizing:border-box}body{margin:0;min-height:100dvh;display:grid;place-items:center;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}button{font:inherit;color:inherit;cursor:pointer;border:2px solid #ffe600;background:#07164b;padding:10px;touch-action:none}button:focus-visible{outline:3px solid white;outline-offset:2px}#game{width:min(100vw,480px);height:min(calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom)),928px);display:flex;flex-direction:column;border-left:3px solid #ffe600;border-right:3px solid #ffe600;overflow:hidden;background:#000;position:relative}header{height:112px;flex:none;padding:7px 12px 5px;position:relative;border-top:3px solid #ffe600;border-bottom:3px solid #ffe600}.brand{font-family:monospace;font-weight:1000;letter-spacing:1px;font-size:23px;line-height:23px;color:#ffe600}.brand small{display:block;color:#00bcd4;font-size:12px;line-height:16px}.brand small span{font-size:8px;color:#fff0be}#sound{position:absolute;right:8px;top:5px;padding:6px;border:0;background:transparent;font-size:13px;color:#b6efff;min-height:35px}.stats{display:flex;justify-content:space-between;align-items:end;gap:8px}.stats>div:nth-child(2){text-align:center}.stats>div:last-child{text-align:right}.stats label{display:block;color:#ff7b20;font:900 15px monospace;line-height:15px}.stats b{font:900 38px/39px monospace;letter-spacing:1px;font-variant-numeric:tabular-nums}#score{color:#ffe600}#height small{font-size:17px}#area{height:25px;display:flex;align-items:center;justify-content:space-between;padding:0 10px;background:#07164b;font-size:12px;font-weight:900;flex:none}#play{position:relative;flex:1;min-height:120px;overflow:hidden;background:#07164b}canvas{display:block;width:100%;height:100%;image-rendering:pixelated}footer{height:157px;flex:none;border-top:3px solid #ffe600;padding:4px 10px 5px;background:#000}#hint{font-size:12px;line-height:20px;color:#ffe600;text-align:center;white-space:nowrap;font-weight:800}#pads{display:flex;gap:10px;height:105px}#pads button{width:50%;position:relative;padding:7px 0 4px 43px;border:3px solid #00bcd4;background:#1539a6;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}#pads #right{background:#a80f38;border-color:#ffe600}#pads button strong{display:block;font-size:29px;line-height:38px;letter-spacing:3px}#pads button small{font:900 13px monospace}.hand{position:absolute;left:8px;top:24px;font-size:28px;filter:grayscale(1) brightness(4)}#pads button.pressed{border-color:white;transform:translateY(2px);background:#07164b}#pads button.next{box-shadow:inset 0 0 0 2px #fff0be}.help{font-size:10px;text-align:center;line-height:18px;color:#b6efff}#overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#0006;overflow:auto;padding:10px}#overlay:empty{display:none}.panel{width:100%;max-width:350px;background:#050b21f5;border:2px solid #ffe600;padding:15px;text-align:center;max-height:100%;overflow:auto}.panel h1{font-size:24px;line-height:1.3;color:#ffe600;margin:6px 0 10px}.panel .eyebrow{color:#00bcd4;font:900 10px monospace;letter-spacing:2px}.panel p{font-size:12px;line-height:1.7;margin:8px 0}.panel button,.panel a{display:block;width:100%;margin-top:8px;text-decoration:none;font-weight:800;font-size:13px;padding:10px}.primary{background:#ffe600;color:#000}.panel .secondary{border-color:#00bcd4;background:#07164b}.panel a{color:#00bcd4}.panel .score{font:900 39px monospace;color:#ffe600}.panel .tags{font-size:11px;color:#fff0be}.panel details{text-align:left;font-size:11px;margin-top:10px}.panel .tiny{font-size:10px;color:#bdc5dc}.panel table{font-size:11px;width:100%}.panel td:last-child{text-align:right}#countdown{position:absolute;inset:0;background:#0007;display:grid;place-items:center;color:#ffe600;font:900 100px monospace;pointer-events:none}#countdown[hidden]{display:none}#game.last10 header{border-color:#f02a28}#qa{position:fixed;left:5px;top:5px;width:160px;font-size:10px;background:#000d;padding:8px;z-index:20}#qa button{font-size:10px;padding:5px;margin:3px}
+@media(max-height:720px){header{height:92px;padding-top:4px}.brand{font-size:19px;line-height:19px}.brand small{line-height:12px;font-size:10px}.stats label{font-size:13px;line-height:13px}.stats b{font-size:31px;line-height:33px}footer{height:125px;padding:2px 8px}#pads{height:82px}#pads button strong{font-size:26px;line-height:31px}.hand{top:18px;font-size:25px}#hint{font-size:10px;line-height:18px}.help{font-size:9px;line-height:15px}#area{height:22px;font-size:11px}.panel{padding:9px}.panel h1{font-size:20px}.panel p{font-size:11px}.panel button{padding:7px;margin-top:5px}}@media(min-width:650px) and (max-height:550px){#game{width:320px}footer{height:110px}#pads{height:70px}header{height:80px}.stats b{font-size:24px;line-height:26px}}
+
+/* Ending: frozen competition HUD, dedicated touch button, no climbing prompts. */
+#game.ending #pads,#game.ending .help{display:none}
+#endingNext{display:block;margin:14px auto 0;width:80%;min-height:48px;font-weight:900}
+#endingNext:disabled{opacity:.5;cursor:default}
+#game.ending #hint{white-space:normal;line-height:24px;padding-top:8px}
+#game.ending.last10 header{border-color:#ffe600}
+
+body:has(#game.ending) #qa{display:none}
+
+/* Reference-matched arcade pads; hit regions and pointer handlers are unchanged. */
+footer{border-bottom:3px solid #ffe600;padding:3px 10px 2px}
+#pads{gap:10px}
+#pads button{padding:7px 18px;display:flex;align-items:center;justify-content:space-around;gap:8px;background:#0735b7;border:3px solid #00cce8;border-radius:0;box-shadow:inset 0 0 0 1px #184cd3;overflow:hidden;color:#fff}
+#pads #right{background:#bf002c;box-shadow:inset 0 0 0 1px #e22243;border-color:#ffe600}
+#pads .pixel-hand{display:block;width:42%;max-width:62px;height:78%;flex:none;pointer-events:none;image-rendering:pixelated}
+#pads .pad-symbol{display:block;width:42%;max-width:64px;height:100%;flex:none;pointer-events:none;image-rendering:pixelated}
+#pads button.pressed{background:#07164b;border-color:#fff;box-shadow:inset 0 0 0 2px #fff}
+#pads button.next{box-shadow:inset 0 0 0 2px #fff0be}
+.control-brand{font:900 15px/20px monospace;letter-spacing:0;color:#00d9f4;text-align:center}
+@media(max-height:720px){footer{padding:1px 8px 0}#pads button{padding:5px 14px}.control-brand{font-size:12px;line-height:17px}}
+
+/* v2.9: readable UI type; pixel art keeps its original raster grid. */
+#textCanvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:auto;pointer-events:none}
+#overlay{background:#0009;padding:8px}
+.panel{background:#050b21;padding:14px;scrollbar-gutter:stable}
+.panel p,.panel .tiny,.panel .tags,.panel details,.panel table{font-size:14px;line-height:1.65;color:#fff}
+.panel .eyebrow{font:800 13px/1.5 system-ui,sans-serif;letter-spacing:.5px;color:#65e9ff}
+.panel h1{font-size:26px;line-height:1.35}
+.panel button,.panel a{font-size:16px;line-height:1.45;min-height:44px;padding:10px}
+.panel summary{font-size:14px;line-height:1.6;padding:8px 0;cursor:pointer}
+.panel td{padding:5px 2px}.panel td:last-child{white-space:nowrap}
+#area{height:auto;min-height:30px;font-size:14px;line-height:20px;gap:8px;padding:4px 8px}
+#floor{min-width:0;overflow-wrap:anywhere}#multiplier{flex:none}
+#sound{font-size:14px}.brand small span{font-size:10px}
+footer{height:180px;display:flex;flex-direction:column;gap:2px}
+#hint{font-size:14px;line-height:20px;white-space:normal;min-height:40px;display:flex;align-items:center;justify-content:center;flex:none}
+#pads{flex:1;min-height:72px;max-height:105px}
+.control-brand{font-size:14px;line-height:20px;flex:none}
+#endingNext{font-size:16px;flex:none}#game.ending #hint{min-height:44px}
+@media(max-height:720px){footer{height:149px}#pads{max-height:82px}.panel{padding:10px}.panel h1{font-size:23px}#area{font-size:14px}.panel p,.panel .tiny,.panel .tags,.panel details,.panel table{font-size:14px}.control-brand{font-size:14px;line-height:18px}}
+
+#area #skip{font-size:14px;line-height:20px;padding:4px 8px;white-space:nowrap;flex:none;min-height:34px}
+#area:has(#skip) #multiplier{display:none}
+.panel{overflow-wrap:anywhere}.panel table{table-layout:fixed}.panel td:first-child{width:62%}
+/* QA controls fold away so they do not obscure the screen being reviewed. */
+#qa{left:auto;right:0;top:0;width:130px;max-height:100dvh;overflow:auto}
+#qa.folded{width:40px;padding:2px}#qa.folded>*:not(#qaToggle){display:none}
+
+.brand small{font-size:14px;line-height:16px}
+#qa.folded{font-size:0}#qa.folded #qaToggle{font-size:10px}
+
+/* v2.11: Pixel typography on every screen. */
+body{visibility:hidden}body.pixel-ready{visibility:visible}
+body,button,a,summary,table,h1,p,b,strong,small,label,span,div,td,aside{font-family:DotGothic16!important;font-weight:400!important;font-style:normal!important;font-synthesis:none}
+header{height:112px;padding:4px 10px}.brand{font-size:32px;line-height:32px;letter-spacing:0}.brand small{font-size:16px;line-height:16px}.stats label{font-size:16px;line-height:16px}.stats b{font-size:32px;line-height:32px;letter-spacing:0}#height small{font-size:16px}#sound{font-size:16px;min-height:32px;padding:4px}
+#area,#area #skip,#hint,.help,.control-brand{font-size:16px;line-height:20px}#area #skip{padding:4px 8px}#hint{min-height:40px}
+.panel h1{font-size:32px;line-height:40px}.panel .score{font-size:48px;line-height:56px}.panel p,.panel .tiny,.panel .tags,.panel details,.panel table,.panel summary,.panel .eyebrow,.panel button,.panel a,#endingNext{font-size:16px;line-height:24px;letter-spacing:0}.panel .tiny{color:#fff0be}.panel summary{list-style:none}.panel summary::-webkit-details-marker{display:none}.panel summary::before{content:'+ ';color:#ffe600}.panel details[open]>summary::before{content:'- '}#countdown{font-size:96px;line-height:96px}#textCanvas{image-rendering:pixelated}
+@media(max-height:720px){header{height:112px}.brand{font-size:32px;line-height:32px}.brand small{font-size:16px;line-height:16px}.stats label{font-size:16px;line-height:16px}.stats b{font-size:32px;line-height:32px}.panel h1{font-size:32px;line-height:40px}#area,.panel p,.panel .tiny,.panel .tags,.panel details,.panel table,.control-brand{font-size:16px}}
+
+/* v2.18: dedicated arcade title and readable pixel how-to page. */
+#game.title-screen{border:3px solid #e8b83e;background:#07164b}
+.title-screen header{height:40px;border:0;padding:0;background:#000}
+.title-screen header .brand{font-size:16px;line-height:32px;padding-left:12px;color:#ffe600}
+.title-screen header .brand small,.title-screen .stats,.title-screen #area,.title-screen footer{display:none}
+.title-screen #sound{top:0;right:8px;font-size:16px}
+.title-screen #overlay{background:#07164b;padding:0;align-items:flex-start;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y}
+.front-panel{width:100%;min-height:100%;padding:12px 22px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;background:#07164b;color:#fff0be}
+.front-kicker{font-size:16px;line-height:20px;color:#00d9f4;letter-spacing:2px}
+#frontLogo{width:100%;height:auto;aspect-ratio:196/68;flex:none}
+.front-panel h1{font:32px/40px DotGothic16;color:#ffe600;margin:0;text-shadow:3px 3px #a80f38;letter-spacing:3px}
+.front-catch{font-size:16px;line-height:24px;margin:0}
+#frontScene{width:100%;height:auto;aspect-ratio:240/104;flex:none}
+.front-spec{width:100%;display:flex;justify-content:space-between;font-size:16px;line-height:24px;padding:4px 0;border-bottom:2px solid #9b682b;color:#ffe600}
+.front-panel button{width:100%;flex:none;min-height:48px;touch-action:manipulation;font-size:16px;line-height:24px;border-radius:0}
+.front-panel .front-start{font-size:32px;line-height:40px;min-height:60px;background:#ffe600;color:#000;border:3px solid #fff0be;box-shadow:4px 4px 0 #9b682b;margin:4px 0}
+.front-panel .front-start:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #9b682b}
+.front-how{background:#07164b;border:2px solid #00bcd4;color:#fff}
+.front-best{font-size:16px;line-height:24px;color:#00d9f4}.front-best span{color:#ffe600}
+.front-credit{font-size:16px;line-height:20px;color:#00d9f4;width:100%;display:flex;justify-content:space-between;margin-top:auto}.front-credit span{color:#fff0be}
+.how-panel{gap:12px;padding-bottom:20px}.how-panel h1{font-size:32px}.how-goal{font-size:16px;line-height:24px;margin:0;color:#ffe600}
+.how-row{width:100%;display:grid;grid-template-columns:52px 1fr;gap:10px;text-align:left;padding:12px 0;border-bottom:2px solid #1539a6}
+.how-icon{color:#ffe600;font-size:16px;line-height:24px;padding-top:4px}.how-row b{font-size:16px;line-height:24px;color:#00d9f4}.how-row p,.how-note{font-size:16px;line-height:24px;margin:4px 0 0;overflow-wrap:anywhere}.how-note{text-align:left;width:100%}
+@media(max-height:700px){.front-panel{padding:8px 16px;gap:4px}#frontLogo{max-width:240px}.front-catch{display:none}#frontScene{max-width:200px}.front-panel .front-start{font-size:16px;line-height:24px;min-height:48px}.front-panel h1{letter-spacing:1px}.front-spec{padding:2px 0}.front-panel button{min-height:44px}.how-panel{gap:10px;padding-bottom:16px}}
+
+.title-screen #canvas,.title-screen #textCanvas{visibility:hidden}
+
+/* v2.19: the complete branded tower fills the title's available height. */
+.front-panel.tower-front{height:100%;min-height:600px;padding:8px 14px;gap:6px}
+.tower-front .tower-scene{width:100%;flex:1;min-height:220px;position:relative}
+.tower-front #frontScene{position:absolute;inset:0;width:100%;height:100%;max-width:none;aspect-ratio:auto;object-fit:contain;image-rendering:pixelated}
+.tower-front .front-best{display:none}
+.tower-front .front-credit{margin-top:0}
+.tower-front h1{flex:none}.tower-front .front-catch{display:block;margin:0;font-size:16px;line-height:24px;flex:none}
+.tower-front .front-spec{padding:2px 0;flex:none}
+@media(max-height:700px){.front-panel.tower-front{min-height:500px;padding:6px 10px;gap:4px}.tower-front .front-catch{display:none}.tower-front .tower-scene{min-height:220px}.tower-front .front-credit{line-height:16px}}
+
+.score-breakdown{width:100%;border-collapse:collapse;margin:8px 0;font-size:16px;line-height:1.5}.score-breakdown th{text-align:left;font-weight:400}.score-breakdown td{text-align:right;white-space:nowrap;color:#ffe900}.score-breakdown tr:nth-last-child(2){border-top:2px solid #ffe900}.score-breakdown th,.score-breakdown td{padding:2px 0}
+
+/* Language selector: available without leaving the current game. */
+#language{position:absolute;right:91px;top:5px;min-width:48px;min-height:32px;padding:2px 5px;font-size:16px!important;line-height:24px;z-index:3}header .brand{font-size:16px!important;letter-spacing:0;line-height:20px}#sound{font-size:16px!important;max-width:86px;padding:2px;line-height:24px}html[lang=en] .front-panel h1{font-size:24px!important}html[lang=en] .how-row b{font-size:16px!important}html[lang=en] #area{font-size:16px!important}html[lang=en] #pads .pad-symbol{display:none}html[lang=en] #left:after{content:"L ←"}html[lang=en] #right:after{content:"R →"}html[lang=en] #pads button:after{font-family:DotGothic16;font-size:32px;line-height:1;white-space:nowrap}html[lang=en] .panel .eyebrow{letter-spacing:0}html[lang=en] #height small{font-size:16px}html[lang=en] .panel p{overflow-wrap:anywhere}
+@media(max-width:350px){header .brand{font-size:16px!important;max-width:155px;line-height:16px}.title-screen header .brand{max-width:150px}#language{right:83px}#sound{right:3px;font-size:16px!important}html[lang=en] .front-panel h1{font-size:16px!important}}
